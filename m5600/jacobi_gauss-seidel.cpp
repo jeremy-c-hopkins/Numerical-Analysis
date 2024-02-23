@@ -27,8 +27,10 @@ int main(){
 
     double arr[n][n];
     double f[n];
+    double guessArr[n][n];
     int sqrtN=sqrt(n);
     double h=M_PI/(sqrtN+1.0);
+    double error = 100;
     
 
     // Setting up Laplace
@@ -79,10 +81,16 @@ int main(){
         cout << "\t" << "\n";
     }
 
-    for(int i=0; i<n; i++){
-        double sum = 0;
-        for(int j=0; j<n; j++){
-            
+    while(error > 1){
+        for(int i=0; i<n; i++){
+            double sum = 0;
+            for(int j=0; j<i; j++){
+                sum += arr[i][j] * guessArr[j];
+            }
+            for(int j=i+1; j<n; j++){
+                sum += arr[i][j] * guessArr[j];
+            }
+            guessArr = (f[j] - sum)/(-4);
         }
     }
 }
