@@ -39,7 +39,8 @@ int main(){
     cout << "\n";
 
 
-    // Gauss reduction.
+    // LU Decomposition
+
     for (int i = 0; i < n; i++){
 
         // Doing reduction for column i.
