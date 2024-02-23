@@ -69,7 +69,7 @@ int main(){
         }
     }
 
-    //print
+    // Printing Laplace matrix and solution
     cout<<"Laplace matrix  |   eigenfunction"<<"\n";
     for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
@@ -82,34 +82,33 @@ int main(){
         cout << "\t" << "\n";
     }
 
-    //Jacobi
-    for (int k=0; k<iter;k++){ //iteration
-        for(int i=0; i<n; i++){
-            double sum = 0;
-            for(int j=0; j<i; j++){ //before diagonal
-                sum += arr[i][j] * oldGuessArr[j];
-            }
-            for(int j=i+1; j<n; j++){ //afater diagonal
-                sum += arr[i][j] * oldGuessArr[j];
-            }
-            newGuessArr[i] = (f[i] - sum)/(-4);
-        }
-        oldGuessArr[k] = newGuessArr[k];
-    }
+    // //Jacobi
+    // for (int k=0; k<iter;k++){ //iteration
+    //     for(int i=0; i<n; i++){
+    //         double sum = 0;
+    //         for(int j=0; j<i; j++){ //before diagonal
+    //             sum += arr[i][j] * oldGuessArr[j];
+    //         }
+    //         for(int j=i+1; j<n; j++){ //afater diagonal
+    //             sum += arr[i][j] * oldGuessArr[j];
+    //         }
+    //         newGuessArr[i] = (f[i] - sum)/(-4);
+    //     }
+    //     oldGuessArr[k] = newGuessArr[k];
+    // }
 
 
     // Random
     for (int k=0; k<iter;k++){ //iteration
         for(int i=0; i<n; i++){
             double sum = 0;
-            for(int j=0; j<i; j++){ //before diagonal
-                sum += arr[i][j] * newGuessArr[j];
-            }
-            for(int j=i+1; j<n; j++){ //afater diagonal
-                sum += arr[i][j] * newGuessArr[j];
+            for(int j=0; j<n; j++){
+                if(j != i){
+                    sum += arr[i][j] * newGuessArr[j];
+                }
             }
             newGuessArr[i] = (f[i] - sum)/arr[i][i];
-            error = oldGuessArr[k] - newGuessArr[k];
+            error = oldGuessArr[i] - newGuessArr[i];
             oldGuessArr[i] = newGuessArr[i];
         }
     }
@@ -121,4 +120,5 @@ int main(){
     for(int i=0; i<n; i++){
         cout<<newGuessArr[i]<<"\n";
     }
+    cout << "\n" << error << endl;
 }
