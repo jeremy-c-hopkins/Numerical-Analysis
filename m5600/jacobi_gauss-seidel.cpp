@@ -90,7 +90,7 @@ int main(){
             for(int j=i+1; j<n; j++){
                 sum += arr[i][j] * guessArr[j];
             }
-            guessArr = (f[j] - sum)/(-4);
+            guessArr = (f[i] - sum)/(-4);
         }
     }
 }
