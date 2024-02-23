@@ -31,11 +31,10 @@ int main(){
     // Setting up Laplace
     for(int i=0; i<n; i++){
         for (int l=0;l<n;l++) {
- 		    arr[i][l]=0.0;
+ 		    arr[i][l]=0.0; //initialize
  		} 
-        arr[i][i] = -4.0;
+        arr[i][i] = -4.0; //initialize
 
-        
         if(i-1>-1 && i%sqrtN!=0){
             arr[i][i-1]=1.0;
         }
@@ -55,7 +54,7 @@ int main(){
             }
             if (i<sqrtN and j<sqrtN){
                 int index = i*sqrtN +j;
-                f[index]=sin(xEigen*(i+1)*h)*sin(yEigen*(j+1)*h);
+                f[index]=sin(xEigen*(i+1)*h)*sin(yEigen*(j+1)*h); // setting eigenfunction
             }
         }
     }
@@ -67,7 +66,7 @@ int main(){
             }
             cout << arr[i][j] << "  ";
         }
-        cout << "\t" << setprecision(5)<<f[i] << "\n";
+        cout << "\t" << setprecision(6)<<f[i] << "\n";
         cout << "\t" << "\n";
     }
 
