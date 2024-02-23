@@ -27,7 +27,8 @@ int main(){
 
     double arr[n][n];
     double f[n];
-    double guessArr[n][n];
+    double newGuessArr[n];
+    double oldGuessArr[n];
     int sqrtN=sqrt(n);
     double h=M_PI/(sqrtN+1.0);
     double error = 100;
@@ -35,6 +36,9 @@ int main(){
 
     // Setting up Laplace
     for(int i=0; i<n; i++){
+        newGuessArr[i]=0; //initialize
+        oldGuessArr[i]=0; //initialize
+
         for (int l=0;l<n;l++) {
  		    arr[i][l]=0.0; //initialize
  		} 
@@ -65,10 +69,7 @@ int main(){
         }
     }
 
-    
-
-
-    //functions to print onto console/terminal
+    //print
     cout<<"Laplace matrix  |   eigenfunction"<<"\n";
     for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
@@ -81,16 +82,24 @@ int main(){
         cout << "\t" << "\n";
     }
 
-    while(error > 1){
+    //Jacobi
+    for (int k=0; k<iter;k++){ //iteration
         for(int i=0; i<n; i++){
             double sum = 0;
-            for(int j=0; j<i; j++){
-                sum += arr[i][j] * guessArr[j];
+            for(int j=0; j<i; j++){ //before diagonal
+                sum += arr[i][j] * oldGuessArr[j];
             }
-            for(int j=i+1; j<n; j++){
-                sum += arr[i][j] * guessArr[j];
+            for(int j=i+1; j<n; j++){ //afater diagonal
+                sum += arr[i][j] * oldGuessArr[j];
             }
-            guessArr = (f[i] - sum)/(-4);
+            newGuessArr[i] = (f[i] - sum)/(-4);
         }
+        oldGuessArr[k] = newGuessArr[k];
+    }
+
+    //print
+    cout<<"jacobi"<<"\n";
+    for(int i=0; i<n; i++){
+        cout<<newGuessArr[i]<<"\n";
     }
 }
