@@ -53,9 +53,9 @@ int main(){
             if(isnan(arr[i][j])){
                 arr[i][j]=0;
             }
-            cout << arr[i][j] << "\t";
+            cout << arr[i][j] << "  ";
         }
-        cout << f[i] << "\n";
+        cout << "\t" << f[i] << "\n";
     }
 
     for(int i=0; i<n; i++){
