@@ -1,0 +1,39 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+
+
+int main(){
+    int n;
+
+    cout << "Enter matrix size n >= 3:" << endl;
+    cin >> n;
+
+    double arr[n][n];
+    double uArr[n][n];
+    double solArr[n][n];
+    double sol[n][n];
+
+    for(int i=0; i<n; i++{
+	for(int j=0; j<n; j++){
+	    arr[i][j]=1.0/(i+j+1.0);
+	}
+	solArr[i]=1.0/(i+7+1.0)-2.0/(i+3+1.0);
+	sol[i]=0;
+	if(i==3){
+	    sol[i]=-2;
+	}
+	if(i==7){
+	    sol[i]=1;
+	}
+    }
+
+    for(int i=0; i<n; i++){
+	uArr[i][i] = sqrt(arr[i][i])
+	for(int j=0; j<n; j++){
+
+	}
+    }
+
+}
