@@ -2,9 +2,12 @@
 #include <cmath>
 using namespace std;
 
+// g++ jacobi_gauss-seidel.cpp  -lm -o  jacobi
+// ./jacobi
+
 int main(){
 
-    int n;
+    int n; //matrix size
     int xEigen;
     int yEigen;
     int iter;
@@ -25,27 +28,32 @@ int main(){
 
     // Setting up Laplace
     for(int i=0; i<n; i++){
-        arr[i][i] = -4.0;
+        for (int l=0;l<n;l++) {
+ 		    arr[i][l]=0.0;
+ 		} 
+       // arr[i][i] = -4.0;
 
-        if(i-1>-1 && i%sqrtN!=0){
-            arr[i][i-1]=1.0;
-        }
-        if(i+1<n && ((i+1)%sqrtN)!=0){
-            arr[i][i+1]=1.0;
-        }
+        
 
-        for(int j=0; j<n; j++){
-            if(j-sqrt(n)==i){
-                arr[i][j]=1.0;
-            }
-            if(j+sqrt(n)==i){
-                arr[i][j]=1.0;
-            }
-            if(abs(arr[i][j])<0.1){
-                arr[i][j]=0;
-            }
-        }
-        f[i]=sin(xEigen*(i+1)*h)*sin(yEigen*(i+1)*h);
+        // if(i-1>-1 && i%sqrtN!=0){
+        //     arr[i][i-1]=1.0;
+        // }
+        // if(i+1<n && ((i+1)%sqrtN)!=0){
+        //     arr[i][i+1]=1.0;
+        // }
+
+        // for(int j=0; j<n; j++){
+        //     if(j-sqrt(n)==i){
+        //         arr[i][j]=1.0;
+        //     }
+        //     if(j+sqrt(n)==i){
+        //         arr[i][j]=1.0;
+        //     }
+        //     if(abs(arr[i][j])<0.1){
+        //         arr[i][j]=0;
+        //     }
+        // }
+        // f[i]=sin(xEigen*(i+1)*h)*sin(yEigen*(i+1)*h);
     }
 
     for(int i=0; i<n; i++){
