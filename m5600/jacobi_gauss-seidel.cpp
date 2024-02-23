@@ -6,8 +6,11 @@ using namespace std;
 // g++ jacobi_gauss-seidel.cpp  -lm -o  jacobi
 // ./jacobi
 
-int main(){
+// This will print out Laplace matrix and eigenfunction on its right side.
+// On next line, it will print 
 
+
+int main(){
     int n; //matrix size
     int xEigen;
     int yEigen;
@@ -46,19 +49,25 @@ int main(){
             if(j-sqrt(n)==i){
                 arr[i][j]=1.0;
             }
-            if(j+sqrt(n)==i){
+            else if(j+sqrt(n)==i){
                 arr[i][j]=1.0;
             }
-            if(abs(arr[i][j])<0.1){
+            else if(abs(arr[i][j])<0.1){
                 arr[i][j]=0;
             }
+            // setting eigenfunction
             if (i<sqrtN and j<sqrtN){
                 int index = i*sqrtN +j;
-                f[index]=sin(xEigen*(i+1)*h)*sin(yEigen*(j+1)*h); // setting eigenfunction
+                f[index]=sin(xEigen*(i+1)*h)*sin(yEigen*(j+1)*h); 
             }
         }
     }
 
+    
+
+
+    //functions to print onto console/terminal
+    cout<<"Laplace matrix  |   eigenfunction"<<"\n";
     for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
             if(isnan(arr[i][j])){
