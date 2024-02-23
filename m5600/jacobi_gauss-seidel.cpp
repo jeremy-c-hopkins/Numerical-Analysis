@@ -7,7 +7,7 @@ using namespace std;
 // ./jacobi
 
 // This will print out Laplace matrix and eigenfunction on its right side.
-// On next line, it will print 
+// On next line, it will print datas with appropriate column on top.
 
 
 int main(){
