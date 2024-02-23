@@ -82,22 +82,7 @@ int main(){
         cout << "\t" << "\n";
     }
 
-    // //Jacobi
-    // for (int k=0; k<iter;k++){ //iteration
-    //     for(int i=0; i<n; i++){
-    //         double sum = 0;
-    //         for(int j=0; j<i; j++){ //before diagonal
-    //             sum += arr[i][j] * oldGuessArr[j];
-    //         }
-    //         for(int j=i+1; j<n; j++){ //afater diagonal
-    //             sum += arr[i][j] * oldGuessArr[j];
-    //         }
-    //         newGuessArr[i] = (f[i] - sum)/(-4);
-    //     }
-    //     oldGuessArr[k] = newGuessArr[k];
-    // }
-
-
+    //Jacobi
     // Random
     for (int k=0; k<iter;k++){ //iteration
         for(int i=0; i<n; i++){
@@ -116,9 +101,10 @@ int main(){
     
 
     //print
-    cout<<"jacobi"<<"\n";
+    cout<<"jacobi      |   jacobi over eigenvector y"<<"\n";
     for(int i=0; i<n; i++){
-        cout<<newGuessArr[i]<<"\n";
+        cout<<newGuessArr[i];
+        cout<<"\t"<<"\t"<<newGuessArr[i]/f[i]<<"\n";
     }
     cout << "\n" << error << endl;
 }
