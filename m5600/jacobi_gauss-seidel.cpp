@@ -97,6 +97,25 @@ int main(){
         oldGuessArr[k] = newGuessArr[k];
     }
 
+
+    // Random
+    for (int k=0; k<iter;k++){ //iteration
+        for(int i=0; i<n; i++){
+            double sum = 0;
+            for(int j=0; j<i; j++){ //before diagonal
+                sum += arr[i][j] * newGuessArr[j];
+            }
+            for(int j=i+1; j<n; j++){ //afater diagonal
+                sum += arr[i][j] * newGuessArr[j];
+            }
+            newGuessArr[i] = (f[i] - sum)/arr[i][i];
+            error = oldGuessArr[k] - newGuessArr[k];
+            oldGuessArr[i] = newGuessArr[i];
+        }
+    }
+    
+    
+
     //print
     cout<<"jacobi"<<"\n";
     for(int i=0; i<n; i++){
