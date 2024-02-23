@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <iomanip> //for setting precision
 using namespace std;
 
 // g++ jacobi_gauss-seidel.cpp  -lm -o  jacobi
@@ -23,8 +24,9 @@ int main(){
 
     double arr[n][n];
     double f[n];
-    double h=M_PI/(n+1.0);
     int sqrtN=sqrt(n);
+    double h=M_PI/(sqrtN+1.0);
+    
 
     // Setting up Laplace
     for(int i=0; i<n; i++){
@@ -51,8 +53,11 @@ int main(){
             if(abs(arr[i][j])<0.1){
                 arr[i][j]=0;
             }
+            if (i<sqrtN and j<sqrtN){
+                int index = i*sqrtN +j;
+                f[index]=sin(xEigen*(i+1)*h)*sin(yEigen*(j+1)*h);
+            }
         }
-         f[i]=sin(xEigen*(i+1)*h)*sin(yEigen*(i+1)*h);
     }
 
     for(int i=0; i<n; i++){
@@ -62,7 +67,8 @@ int main(){
             }
             cout << arr[i][j] << "  ";
         }
-        cout << "\t" << f[i] << "\n";
+        cout << "\t" << setprecision(5)<<f[i] << "\n";
+        cout << "\t" << "\n";
     }
 
     for(int i=0; i<n; i++){
