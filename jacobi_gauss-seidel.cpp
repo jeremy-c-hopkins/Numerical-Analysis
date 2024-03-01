@@ -205,5 +205,26 @@ int main(){
             cout << setprecision(3) << gaussSeidelX4[i] << "\t\t\t" << setprecision(3) << xEigenSolution4[i] << "\n";
         }
         cout << "\n\n";
+        cout << "Checking Orthogonality\n";
+        double innerproduct1 = 0;
+        double innerproduct2 = 0;
+        double innerproduct3 = 0;
+        double innerproduct4 = 0;
+        double innerproduct5 = 0;
+        double innerproduct6 = 0;
+        for(int i=0; i<n; i++){
+            innerproduct1 += eigenVectorY1[i] * eigenVectorY2[i];
+            innerproduct1 += eigenVectorY1[i] * eigenVectorY3[i];
+            innerproduct1 += eigenVectorY1[i] * eigenVectorY4[i];
+            innerproduct1 += eigenVectorY2[i] * eigenVectorY3[i];
+            innerproduct1 += eigenVectorY2[i] * eigenVectorY4[i];
+            innerproduct1 += eigenVectorY3[i] * eigenVectorY4[i];
+        }
+        cout << "Inner product of Eigenvector 1 and 2: " << innerproduct1 << "\n";
+        cout << "Inner product of Eigenvector 1 and 3: " << innerproduct2 << "\n";
+        cout << "Inner product of Eigenvector 1 and 4: " << innerproduct3 << "\n";
+        cout << "Inner product of Eigenvector 2 and 3: " << innerproduct4 << "\n";
+        cout << "Inner product of Eigenvector 2 and 4: " << innerproduct5 << "\n";
+        cout << "Inner product of Eigenvector 3 and 5: " << innerproduct6 << "\n";
     }
 }
