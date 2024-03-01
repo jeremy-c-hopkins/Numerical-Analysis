@@ -12,6 +12,7 @@ using namespace std;
 int main() {
     int n;
     int pivot;
+    int count = 0;
     double max;
     double temp;
     double error = 0;
@@ -65,7 +66,7 @@ int main() {
     if(pivot==1||pivot==2){
         for (int i = 0; i < n; i++){
 
-            // Checking for pivot conditions.
+            // // Checking for pivot conditions.
             if (pivot == 1){
                 int index = -1;
                 max = arr[i][i];
@@ -116,6 +117,7 @@ int main() {
                         solArr[j] -= mij * solArr[i];
                         for (int k = i; k < n; k++){
                             arr[j][k] -= mij * arr[i][k];
+                            count++;
                         }
                     }   
                 }
@@ -128,6 +130,7 @@ int main() {
             for(int j = i - 1; j > -1; j--){
                 arr[j][i] = arr[j][i] * solArr[i];
                 solArr[j] -= arr[j][i];
+                count++;
             }
         }
 
@@ -139,11 +142,12 @@ int main() {
                 l[j][i] = mij;
                 for (int k = i; k < n; k++){
                     arr[j][k] -= mij * arr[i][k];
+                    count++;
                 }
             }   
         }
 
-        cout << "L MATRIX\n";
+        cout << "\nL MATRIX\n";
         for(auto&i:l){
             for(auto&j:i){
                 cout << j << " ";
@@ -159,9 +163,7 @@ int main() {
             }
             cout << "\n";
         }
-        cout << "\n==================";
-
-
+    
         // Inverting the Lower Matrix
         for(int i = 1; i<n; i++){
             for(int j = 0; j < i; j++){
@@ -169,6 +171,7 @@ int main() {
                 for(int k = 0; k < i; k++){
                     lInverse[i][k] -= mij * lInverse[j][k];
                     l[i][k] -= mij * l[j][k];
+                    count++;
                 }
             }
         }
@@ -179,6 +182,7 @@ int main() {
             double scale = 1/arr[i][i];
             for(int l=i; l<n; l++){
                 arr[i][l] = scale * arr[i][l];
+                count++;
             }
         }
 
@@ -189,18 +193,18 @@ int main() {
                 for (int k = j; k<n; k++){
                     arr[i][k] -= mij * arr[j][k];
                     arrInverse[i][k] -= mij * arrInverse[j][k];
+                    count++;
                 }
             }
         }
 
-        cout << "\n L INVERSE\n";
+        cout << "\n\nL INVERSE\n";
         for(auto&i:lInverse){
             for(auto&j:i){
                 cout << j << "  ";
             }
             cout << "\n";
         }
-        cout << "\n";
         cout << "\nU INVERSE\n";
         for(auto&i:solArr){
             cout << i << "\n";
@@ -210,20 +214,22 @@ int main() {
 
         
 
-        for(int index=0; index<n; index++){
-            double total = 0;
-            for(int second_index=0; second_index<n; second_index++){
-                total += lInverse[index][second_index] * solArr[second_index];
+        for(int i=0; i<n; i++){
+            double sum = 0;
+            for(int j=0; j<n; j++){
+                sum += lInverse[i][j] * solArr[j];
+                count++;
             }
-            tempSolArr[index] = total;
+            tempSolArr[i] = sum;
         }
 
-        for(int index=0; index<n; index++){
-            double total = 0;
-            for(int second_index=0; second_index<n; second_index++){
-                total += arrInverse[index][second_index] * tempSolArr[second_index];
+        for(int i=0; i<n; i++){
+            double sum = 0;
+            for(int j=0; j<n; j++){
+                sum += arrInverse[i][j] * tempSolArr[j];
+                count++;
             }
-            solArr[index] = total;
+            solArr[i] = sum;
         }
         
     }
@@ -232,7 +238,7 @@ int main() {
     
     //=======================================================================
     //=======================================================================
-    cout << "Solution array" << endl;
+    cout << "Solution" << endl;
 
     // Printing solution array.
     for (int x = 0; x < n; x++){
@@ -240,5 +246,6 @@ int main() {
         error += pow(solutionSpace[x] - solArr[x], 2);
     }
 
-    cout << "Error: " << sqrt(error) << endl;
+    cout << "Error (for n>=7): " << sqrt(error) << endl;
+    cout << "Number of Operations: " << count;
 }
